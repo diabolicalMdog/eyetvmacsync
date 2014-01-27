@@ -1,0 +1,40 @@
+#!/usr/bin/perl
+
+use warnings;
+use strict;
+
+use Data::Dumper;
+
+my $debug;
+
+my $sleepTime = 5;
+
+my $ppid = $$;
+
+my $fpid = fork();
+
+if ($fpid == 0)
+{
+	while (1 == 1)
+	{
+		my $date1 = time();
+		$debug and print "Got ".Dumper($date1)."\n";
+		sleep $sleepTime;
+		my $date2 = time();
+		$debug and print "Got ".Dumper($date2)."\n";
+
+		my $ddif = $date2 - $date1;
+
+		$debug and print "tdif is ".Dumper($ddif)."\n";
+
+		if ($ddif > $sleepTime)
+		{
+			kill 1, $ppid;
+			exit(0);
+		}
+	}
+}
+else
+{
+	exec @ARGV;
+}

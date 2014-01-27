@@ -1,0 +1,18 @@
+#!/usr/bin/env perl
+
+use warnings;
+use strict;
+
+my $localUser = 'username';
+my $remoteDir = "/Volumes/myBigExternalDrive/EyeTV Archive";
+my $remoteSystem = "foobar.local"
+my $remoteUser = 'username';
+
+while (1 == 1)
+{
+	print "$0 looping at ".`/bin/date +%Y-%m-%d-%H-%M-%S--%s`;
+	system("/Users/$localUser/bin/necnarc /Users/$localUser/bin/eyetvsync.pl --transfer-log /Users/$localUser//var/eyetvsync.log --local-shows-dir \"/Users/$localUser/Documents/EyeTV Archive/\" --remote-shows-dir \"$remoteDir\" --remote-host $remoteSystem --remote-user $remoteUser --patterns-file /Users/$localUser/etc/eyetv-patterns.txt --local-staging-dir /Users/$localUser/EyeTvStaging/ --debug");
+	warn "System had an ill result!" if $?;
+	print "About to sleep for 1800 at ".`/bin/date +%Y-%m-%d-%H-%M-%S--%s`;
+	sleep(1800);
+}
