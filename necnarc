@@ -1,5 +1,8 @@
 #!/usr/bin/perl
 
+#This script wraps things and kills them if it detects that a sleep has
+#happened.
+
 use warnings;
 use strict;
 
